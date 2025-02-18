@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Final_Map_3023108i</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Toggle Layers</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Mapbox JS API -->
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.js"></script>
+    
+    <!-- Mapbox CSS -->
+    <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.css" rel="stylesheet">
+
+    <style>
+        #map { width: 100%; height: 700px; }
+        .session { margin-top: 10px; }
+        .row { display: flex; flex-wrap: wrap; gap: 10px; }
+        .rubik-font { font-family: 'Rubik', sans-serif; }
+    </style>
+</head>
+<body>
+
+    <div id="map"></div>
+    
+        <p><a href="https://www.efestivals.co.uk/festivals/festivals.php?year=2025">Source</a></p>
+
+        <!-- Font links for Rubik -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+
+    <!-- Map Container -->
+    <div id="map-container">
+        <div id="map"></div>
+
+        <!-- Filters -->
+        <div id="filters" class="rubik-font">
+          
+   <!-- Title above the slider -->
+<style>
+
+   #map { width: 100%; height: 700px; }
+        .session { margin-top: 10px; }
+        .row { display: flex; flex-wrap: wrap; gap: 10px; }
+        .rubik-font { font-family: 'Rubik', sans-serif; }
+
+        /* Style for the filter container */
+        #filters {
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            background-color: #333;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            z-index: 10; /* Higher value so filter container stays on top */
+        }
+
+        /* Popup styling */
+        .mapboxgl-popup {
+            z-index: 20; /* Ensure popup is above filter container */
+            background-color: white;
+        }  
+  
+  h1 {
+    font-size: 20pt;
+    color: white;
+    margin-bottom: 5px; /* Adjust space below the title */
+  }
+  
+  h2 {
+    font-size: 18pt;
+    color: white;
+    margin-top: 5px; /* Adjust space above the subtitle */
+  }
+</style>
+
+
+
+          <h1 id="title">UK Festival Finder</h1>
+
+  <!-- Slider Container (Centered on Map) -->
+        <div id="slider-container">
+             <label id="slider-title">2025<label id="active-month">January</label></h2>
+            <input id="slider" type="range" min="1" max="11" step="1" value="1" />
+          </div>
+   
+
+         
+          <!-- Dropdown for Festival Type -->
+<label for="festival-type">Select Genre:</label>
+<select id="festival-type">
+  <option value="all">All</option>
+  <option value="Mixed/Other">Mixed/Other</option>
+  <option value="Jazz">Jazz</option>
+  <option value="Country/Bluegrass">Country/Bluegrass</option>
+  <option value="Folk/Acoustic">Folk/Acoustic</option>
+  <option value="Blues/Soul">Blues/Soul</option>
+  <option value="Rock/Metal">Rock/Metal</option>
+</select>
+
+
+     
+
+    </div>
+
+    <script>
+        // Mapbox Access Token
+        mapboxgl.accessToken = "pk.eyJ1IjoiYWlzc2Fldml0Y2giLCJhIjoiY202dGphODBrMDNpaTJpc2hyaWV0YXBhdiJ9.jqL4gbq8uNOpcgfTUZLXsg";
+
+        // Create the Map
+        const map = new mapboxgl.Map({
+            container: "map", // container element id
+            style: ""mapbox://styles/mapbox/light-v10", // Your custom style
+            center: [-3.4360, 55.3781], // Initial map center
+            zoom: 4.5 // Initial zoom level
+        });
+
+        // URL to GeoJSON dataset
+        const data_url = "https://api.mapbox.com/datasets/v1/aissaevitch/cm6qmlxrc1rz01nloie8di0vl/features?access_token=pk.eyJ1IjoiYWlzc2Fldml0Y2giLCJhIjoiY202dGphODBrMDNpaTJpc2hyaWV0YXBhdiJ9.jqL4gbq8uNOpcgfTUZLXsg";
+
+        // Wait for the map to load
+        map.on("load", () => {
+            // Filters for the Month and Festival Type
+            let filterType = ["!=", ["get", "Title"], "placeholder"];
+            let filterMonth = ["!=", ["get", "Month"], "2025-01"]; // Default filter for January
+
+            // Add festival layer to the map using circles
+            map.addLayer({
+                id: "festivals",
+                type: "circle",
+                source: {
+                    type: "geojson",
+                    data: data_url
+                },
+                paint: {
+                    "circle-radius": 10,
+                    "circle-color": "#eb4d4b",
+                    "circle-opacity": 0.9
+                }
+            });
+
+            // Set initial filter for the month and festival title
+            map.setFilter("festivals", ["all", filterMonth, filterType]);
+
+            // Initialize the display for the month text on page load (e.g., Month: January)
+            const monthNames = ["All Festivals","January", "February", "March", "April", "May", "June", "July", "August", "September", "October"];
+            document.getElementById("active-month").innerText = monthNames[0]; // Display January initially
+
+            // Slider interaction to change month
+            document.getElementById("slider").addEventListener("input", (event) => {
+                const month = parseInt(event.target.value); // Get the month number (1 to 12)
+ 
+              <!-- Slider Container (Centered on Map) -->
+
+<div id="slider-container">
+    <label id="slider-title">Month: <label id="active-month">All Festivals</label></label>
+    <input id="slider" type="range" min="1" max="11" step="1" value="0" />
+</div>
+
+
+                if (month >= 1 && month <= 11) {
+                    const formatted_month = "2025-" + ("0" + month).slice(-2); // e.g., "2025-01"
+                    filterMonth = ["==", ["get", "Month"], formatted_month];
+                    map.setFilter("festivals", ["all", filterMonth, filterType]);
+
+                    document.getElementById("active-month").innerText = monthNames[month - 1]; // Directly show the month name
+                }
+            });
+
+          
+        // Apply both month and festival type filters
+        map.setFilter("festivals", ["all", filterMonth, filterType]);
+    });
+map.addControl(new mapboxgl.NavigationControl()); 
+</script>
+      
+       </body> 
+
+  
+  
+</html>
+<!-- partial -->
+  <script  src="./script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,137 @@
+/* Popup styling */
+.my-popup .mapboxgl-popup-content { 
+    width: 220px; 
+    border-radius: 8px; /* Rounded corners */
+    padding: 15px; /* Adjust padding */
+    color: black; 
+    font-family: "Rubik", sans-serif;
+    position: absolute; /* Ensure it's positioned above other content */
+    background: white; /* Solid white background */
+    opacity: 0.85; /* Set background opacity */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Add shadow */
+    z-index: 9999; /* High z-index to appear above everything */
+}
+
+/* Popup tip (arrow) */
+.my-popup .mapboxgl-popup-tip {
+    border-top-color: white; /* Ensure popup arrow matches background */
+    
+}
+
+/* Filter container styling */
+#filters {
+  position: absolute; /* Absolute positioning for proper layer control */
+  top: 10px;
+  left: 30px;
+  width: 250px; /* Width of the sidebar */
+  height: 65vh; /* Full height of the viewport */
+  background-color: black;
+  border-right: 2px solid #ccc; /* White border */
+  padding: 0px 5px 5px 5px; /* Reduce top padding */
+  box-sizing: border-box;
+  border-radius: 15px; /* Rounded edges for the filter container */
+  overflow-y: auto; /* Allow scrolling if content overflows */
+  z-index: 0; /* Lower z-index than popup */
+}
+
+/* Map container styling */
+html, body {
+    height: 100%; /* Make sure the body and html take up full height */
+    margin: 0; /* Remove any default margins */
+    padding: 0; /* Remove any default padding */
+
+
+#map {
+  width: 100%; /* Set width to 50% */
+  height: 100%; /* Full viewport height */
+  margin-left: 0px; /* Space for filters on the left */
+  overflow: scroll; /* Enable both vertical and horizontal scrolling */
+  position: relative; /* Ensure correct layout behavior */
+  white-space: nowrap; /* Prevent content wrapping */
+ 
+}
+
+/* Slider container */
+#slider-container {
+  text-align: center;
+  margin-top: 15px;
+  margin-bottom: 25px; /* Adjust spacing below the entire slider container */
+}
+
+/* Slider title (Month label) */
+#slider-title {
+  font-size: 14px; 
+  font-weight: 400;
+  color: white;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Active month text */
+#active-month {
+  font-size: 14px;
+  font-weight: 500;
+  color: white;
+  margin-bottom: 20px; /* Space between the month text and the slider */
+  display: block;
+  text-align: center; 
+}
+
+/* Filter label styling */
+#filters label {
+  display: block;
+  margin-bottom: 5px; /* Reduced margin */
+  font-weight: 350;
+  color: white; 
+}
+
+/* Highlight the options in the dropdown list */
+#festival-type option:hover {
+  background-color: lightpink; /* Pink background on hover */
+  color: white; /* White text for contrast */
+}
+
+/* Dropdown styling */
+#festival-type {
+  width: 100%;
+  padding: 8px;
+  margin-top: 10px; /* Increased space below the label */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: white;
+  font-family: "Rubik", serif;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* Dropdown highlight when selecting */
+#festival-type:focus {
+  outline: none;
+  border-color: lightpink; /* Light pink highlight */
+  box-shadow: 0 0 5px rgba(255, 182, 193, 0.75); /* Soft light pink glow */
+}
+
+/* Title styling */
+#title {
+  text-align: center; /* Ensures the title text is centered */
+  font-size: 24px; /* Adjust as needed */
+  color: white; /* Make sure the text color is visible on black background */
+  margin-bottom: 20px; /* Add some spacing if needed */
+}
+
+/* Slider styling */
+#slider {
+  width: 200px;
+  margin-top: 20px;
+}
+
+/* Active month text */
+#active-month {
+  position: absolute;
+  top: px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 16px;
+  color: white;
+  font-family: "Rubik", serif;
+}
